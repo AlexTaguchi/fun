@@ -1,12 +1,15 @@
-# Draw fractal snowflake
-
+# Draw Fractal Snowflake with Turtle Module
 import turtle
-import tensorflow
 
 
+# Recursive function
 def snowflake(turt, stride):
+
+    # Base case
     if stride < 1.5:
         return
+
+    # Draw one side of the snowflake recursively
     turt.forward(stride)
     snowflake(turt, stride/2)
     turt.forward(stride)
@@ -24,33 +27,30 @@ def snowflake(turt, stride):
     turt.forward(stride)
 
 
+# Instantiate turtle object
 t = turtle.Turtle()
 t.speed(100)
 t.hideturtle()
 t.up()
+
+# Put turtle into correct initial position
 t.left(120)
 t.forward(300)
 t.right(120)
 t.down()
-t.width(3)
-for _ in range(3):
-    snowflake(t, 10)
-    t.right(120)
-t.right(30)
-t.up()
-t.forward(32)
-t.down()
-t.left(30)
-t.width(2)
-for _ in range(3):
-    snowflake(t, 8)
-    t.right(120)
-t.right(30)
-t.up()
-t.forward(32)
-t.down()
-t.left(30)
-t.width(1)
-for _ in range(3):
-    snowflake(t, 6)
-    t.right(120)
+
+# Draw three snowflakes
+for (i, j) in enumerate([10, 8, 6]):
+
+    # Snowflake fractal
+    t.width(i + 1)
+    for _ in range(3):
+        snowflake(t, j)
+        t.right(120)
+
+    # Reposition
+    t.right(30)
+    t.up()
+    t.forward(32)
+    t.down()
+    t.left(30)
